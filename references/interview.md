@@ -5,7 +5,7 @@ Pertanyaan pembuka wajib. Tujuan Anda di sini adalah menyampaikan narasi *hybrid
 * **Strategi Jawaban:** Buka dengan fondasi akademis Anda yang melatih *analytical mindset*, lalu ceritakan transisi Anda ke dunia teknologi (*Computer Science fundamentals* & *Machine Learning*), dan tutup dengan antusiasme Anda terhadap posisi *Data Science Intern*.
 * **Contoh Kalimat:** 
 
-    "Saya Yusuf Tejakusumah, bisa dipanggil Teja. Saya merupakan lulusan pendidikan matematika serta memiliki ketertarikan pada *Artificial Intelligence* dan *Business Analytics*. Selama kuliah, saya mengasah kemampuan *Problem-Solving*, yang kemudian saya kembangkan menjadi keterampilan teknis, yakni *Data Science* secara *end-to-end*. Saya pribadi menikmati proses menerjemahkan data yang kompleks menjadi insights yang jelas serta *actionable*, dan itulah yang membuat saya sangat tertarik dengan kesempatan di Etiqa ini."
+    "Saya Yusuf Tejakusumah, bisa dipanggil Teja. Saya merupakan lulusan pendidikan matematika serta memiliki ketertarikan pada *Artificial Intelligence* dan *Business Analytics*. Selama kuliah, saya mengasah kemampuan *Problem-Solving*, yang kemudian saya kembangkan menjadi keterampilan teknis, yakni *Data Science*. Oleh karena itu, saya pribadi menyukai proses menerjemahkan data yang kompleks menjadi insights yang jelas serta *actionable*."
 
 ### 2. Latar Belakang Pendidikan
 
