@@ -1,16 +1,26 @@
-### 1. Merumuskan "Elevator Pitch" (Ceritakan Tentang Diri Anda)
+### 1. Ceritakan Tentang Diri Anda
 
-Ini adalah pertanyaan pembuka wajib. Tujuan Anda di sini adalah menyampaikan narasi *hybrid* yang utuh secara singkat (1-2 menit).
+Pertanyaan pembuka wajib. Tujuan Anda di sini adalah menyampaikan narasi *hybrid* yang utuh secara singkat (1-2 menit).
 
 * **Strategi Jawaban:** Buka dengan fondasi akademis Anda yang melatih *analytical mindset*, lalu ceritakan transisi Anda ke dunia teknologi (*Computer Science fundamentals* & *Machine Learning*), dan tutup dengan antusiasme Anda terhadap posisi *Data Science Intern*.
-* **Contoh Kalimat:** "Saya adalah lulusan matematika dengan ketertarikan besar pada *Artificial Intelligence* dan analitik bisnis. Selama masa studi, saya mengasah kemampuan *problem-solving* komputasional yang kuat, yang kemudian saya kembangkan menjadi keterampilan teknis *Data Science* secara *end-to-end*. Saya sangat menikmati proses menerjemahkan data yang kompleks menjadi wawasan bisnis yang jelas dan *actionable*, dan itulah yang membuat saya sangat antusias dengan kesempatan di Etiqa ini."
+* **Contoh Kalimat:** 
 
-### 2. Menjawab "The Elephant in the Room" (Latar Belakang Pendidikan)
+    "Saya Yusuf Tejakusumah, bisa dipanggil Teja. Saya merupakan lulusan pendidikan matematika serta memiliki ketertarikan pada *Artificial Intelligence* dan *Business Analytics*. Selama kuliah, saya mengasah kemampuan *Problem-Solving*, yang kemudian saya kembangkan menjadi keterampilan teknis, yakni *Data Science* secara *end-to-end*. Saya pribadi menikmati proses menerjemahkan data yang kompleks menjadi insights yang jelas serta *actionable*, dan itulah yang membuat saya sangat tertarik dengan kesempatan di Etiqa ini."
 
-HR dari Etiqa pasti akan bertanya: *"Lowongan ini mensyaratkan Ilmu Komputer, mengapa Anda yang dari Pendidikan Matematika merasa cocok untuk posisi ini?"*
+### 2. Latar Belakang Pendidikan
 
-* **Strategi Jawaban:** Jangan bersikap defensif. Jadikan ini sebagai keunggulan komparatif Anda.
-* **Contoh Kalimat:** "Latar belakang matematika justru memberikan saya fondasi fundamental yang paling esensial dalam algoritma AI dan *Machine Learning*, seperti kalkulus, probabilitas, dan statistik. Untuk melengkapi sisi rekayasa perangkat lunaknya, saya telah mendalami *Computer Science fundamentals* secara intensif, membangun *website* portofolio mandiri dengan JavaScript dan CSS, serta terbiasa menggunakan *tools* industri seperti Docker dan Git. Kombinasi inilah yang memungkinkan saya memahami cara kerja model secara teoretis sekaligus mengeksekusinya secara teknis."
+***"Lowongan ini mensyaratkan Ilmu Komputer, mengapa Anda yang dari Pendidikan Matematika merasa cocok untuk posisi ini?"***
+* **Strategi Jawaban:** 
+
+    **Jangan bersikap defensif**. Jadikan ini sebagai keunggulan komparatif Anda.
+
+* **Contoh Kalimat:**
+
+    "Pertama, latar belakang saya di bidang matematika terlebih dahulu. Ini justru memberi saya fondasi fundamental yang paling esensial dalam algoritma AI dan *Machine Learning*, seperti mata kuliah kalkulus, probabilitas, dan statistik. Dan ntuk melengkapi sisi komputernya, saya telah mendalami fundamental ilmu komputer secara intensif, membangun *website* portofolio mandiri dengan JavaScript dan CSS, serta terbiasa menggunakan *tools* industri seperti Docker dan Git. Kombinasi inilah yang memungkinkan saya memahami cara kerja model secara teoretis sekaligus mengeksekusinya secara teknis."
+
+    "Adapun latar belakang saya di bidang pendidikan, khususnya pengalaman mengajar dan membimbing, menuntut saya untuk memiliki kemampuan komunikasi yang baik, yang mana kita harus memastikan bahwa apa yang kita sampaikan itu tidak hanya tersampaikan, namun pendengar juga menerima dan memahami apa yang kita sampaikan tersebut. Sebagai seorang yang pernah mengajar siswa dengan karakter yang berbeda-beda, saya dituntut mengemas suatu pelajaran yang kompleks agar dapat dipahami dengan mudah dan ringan. Ini diperlukan data scientist, di mana harus mampu menyampaikan hasil kerjanya yang kompleks seperti kepada stakeholders dengan bahasa yang sederhana dan mudah dipahami."
+
+*
 
 ### 3. Membahas *Technical Test* (Kasus Asuransi Motor OJK)
 
