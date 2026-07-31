@@ -5,7 +5,7 @@ Pertanyaan pembuka wajib. Tujuan Anda di sini adalah menyampaikan narasi *hybrid
 * **Strategi Jawaban:** Buka dengan fondasi akademis Anda yang melatih *analytical mindset*, lalu ceritakan transisi Anda ke dunia teknologi (*Computer Science fundamentals* & *Machine Learning*), dan tutup dengan antusiasme Anda terhadap posisi *Data Science Intern*.
 * **Contoh Kalimat:** 
 
-    "Saya Yusuf Tejakusumah. Saya merupakan lulusan pendidikan matematika serta memiliki ketertarikan pada *Artificial Intelligence*, *Business Analytics*, dan *Front-End Development*. Selama kuliah, saya mengasah kemampuan *Problem-Solving*, yang kemudian saya kembangkan menjadi keterampilan teknis pada project-project *Data Science* saya. Oleh karena itu, saya pribadi menyukai proses menerjemahkan data yang kompleks menjadi insights yang jelas dan *actionable*, yang kemudian dikemas menjadi produk yang *user-friendly*. Karena itu, saya sangat antusias untuk bergabung sebagai *Data Science Intern* di Etiqa, agar dapat berkontribusi dalam membangun produk yang bermanfaat bagi masyarakat."
+    "Saya Yusuf Tejakusumah. Saya merupakan lulusan pendidikan matematika serta memiliki ketertarikan pada *Artificial Intelligence*, *Business Analytics*, dan *Front-End Development*. Selama kuliah, saya mengasah kemampuan *Problem-Solving*, yang kemudian disalurkan menjadi project-project data science, lalu dikemas menjadi insights yang *user-friendly*. Karena itu, saya sangat ingin untuk bergabung sebagai *Data Science Intern* di Etiqa, yang mana berdasarkan kualifikasi untuk posisi ini, Etiqa memerlukan seseorang yang bisa menggabungkan data science dengan front-end development agar tidak hanya dapat berkontribusi dalam membangun produk yang bermanfaat dalam melayani nasabah, tetapi juga memudahkan mereka dalam menggunakan produk kita."
 
 ### 2. Latar Belakang Pendidikan
 
@@ -45,69 +45,3 @@ Sebagai kandidat yang melamar posisi *Intern*, kemampuan bekerja sama dan mau be
 
 ---
 
-Dari kelima kategori pertanyaan HR di atas, bagian mana yang menurut Anda paling menantang untuk dijawab secara langsung, sehingga kita bisa berlatih simulasinya sekarang?
-
-### BAGIAN 1: PEMBUKAAN & MOTIVASI (Opening & Motivation)
-
-**1. Ceritakan tentang diri Anda dan alasan mengapa ingin magang di Etiqa.**
-
-> **Jawaban:** "Saya adalah lulusan Pendidikan Matematika (Cum Laude, IPK 3.81) yang beralih menjadi *Data Science Enthusiast*. Saya memiliki fondasi kuat dalam pemodelan statistik yang saya padukan dengan keahlian *Machine Learning* dan *Web Development* (*HTML, CSS, JS*). Selama masa studi dan sertifikasi *Data Science*, saya terbiasa membangun solusi dari hulu ke hilir.
-> Alasan utama saya sangat ingin magang di Etiqa adalah karena industri asuransi merupakan sektor yang sangat bergantung pada mitigasi risiko berbasis data. Bukti keseriusan saya terhadap Etiqa adalah ketika saya mendedikasikan diri untuk meriset aturan OJK dan membangun *website* MVP Kalkulator Asuransi dalam waktu kurang dari 24 jam untuk *technical test*. Saya memiliki semangat yang tinggi untuk terus belajar dan berkontribusi langsung pada proyek nyata di Etiqa."
-
-**2. Apa yang Anda ketahui tentang Etiqa?**
-
-> **Jawaban:** "Etiqa adalah salah satu perusahaan asuransi terkemuka di Asia Tenggara dan merupakan bagian dari grup Maybank. Saya mengetahui bahwa Etiqa menyediakan berbagai produk asuransi, baik konvensional maupun syariah, dengan fokus pada pelayanan yang cepat dan berpusat pada pelanggan. Saya sangat tertarik dengan bagaimana Etiqa menggunakan inovasi teknologi untuk menyederhanakan proses asuransi bagi masyarakat."
-
-**3. Di mana Anda melihat diri Anda 5 tahun ke depan?**
-
-> **Jawaban:** "Dalam 5 tahun ke depan, saya melihat diri saya sebagai seorang *Data Scientist* senior atau *Machine Learning Engineer* yang spesifik berfokus pada analitik finansial dan asuransi. Saya ingin memiliki rekam jejak dalam menciptakan berbagai *Minimum Viable Product* (MVP) yang berhasil menekan angka *churn* pelanggan dan meningkatkan ROI perusahaan. Mengingat teknologi AI bergerak sangat cepat, saya akan memastikan diri saya selalu menjadi individu yang haus akan ilmu dan terus belajar mengadopsi teknologi baru."
-
----
-
-### BAGIAN 2: KOMPETENSI, PENGALAMAN & SKRIPSI (Competence & Experience)
-
-**4. Jelaskan tentang skripsi Anda. Apa hubungannya dengan data?**
-
-> **Jawaban:** "Skripsi saya membahas Etnomatematika (budaya dan matematika) pada Pendopo Keraton Selagangga Ciamis. Secara teknis *Data Science*, skripsi ini melatih saya untuk mengolah *unstructured data* (data tak terstruktur) berupa observasi budaya kualitatif, lalu mengekstraksi dan merapikannya menjadi analisis geometri matematis yang terstruktur. Ini membuktikan kemampuan *problem-solving* saya dalam menemukan pola tersembunyi dari data yang awalnya terlihat abstrak."
-
-**5. Pengalaman atau program apa yang paling relevan dengan posisi ini?**
-
-> **Jawaban:** "Selain membangun MVP untuk tes Etiqa, pengalaman paling relevan saya adalah saat mengikuti *bootcamp* intensif dari Course-Net dan mengerjakan proyek prediksi *Telco Customer Churn*. Di sana, saya tidak hanya membuat model prediksi menggunakan algoritma XGBoost, tetapi juga menganalisis kelayakan bisnisnya. Hasilnya, model tersebut mampu mengidentifikasi pelanggan yang berisiko pergi, dan berdasarkan simulasi profitabilitas, proyeksi *Return on Investment* (ROI)-nya mencapai 981%."
-
-**6. Apa kelebihan Anda yang paling bermanfaat bagi Etiqa? & Kenapa kami harus memilih Anda?**
-
-> **Jawaban:** "Kelebihan utama saya adalah kemampuan teknis yang *hybrid* dipadukan dengan pola pikir bisnis. Saya tidak hanya bisa membuat model AI dan *Machine Learning* yang kompleks (seperti meningkatkan akurasi NLP dari 58% menjadi 87% pada proyek sentimen analisis saya), tetapi saya juga bisa mengemas model tersebut menjadi tampilan *website* yang mudah dipahami menggunakan JavaScript dan HTML. Etiqa harus memilih saya karena saya bukan sekadar pembuat kode, tetapi penganalisis data yang berorientasi pada profit (ROI) dan siap memberikan solusi praktis berbentuk MVP."
-
----
-
-### BAGIAN 3: EVALUASI DIRI & RESILIENSI (Self-Evaluation & Resilience)
-
-**7. Apa kekurangan Anda dan bagaimana Anda mengatasinya?**
-
-> **Jawaban:** "Kekurangan saya adalah saat melakukan *public speaking* atau presentasi, saya terkadang sangat antusias sehingga cenderung *oversharing* atau menjelaskan terlalu banyak detail yang melenceng dari topik utama. Menyadari hal ini, solusinya adalah saya sekarang selalu menyiapkan poin-poin utama (*bullet points*) sebelum berbicara dan menggunakan kerangka komunikasi STAR (*Situation, Task, Action, Result*) agar penjelasan saya tetap padat, terstruktur, dan berfokus pada hasil. Saya selalu terbuka terhadap kritik dan memiliki komitmen untuk terus belajar memperbaiki kemampuan komunikasi profesional saya."
-
-**8. Apa pencapaian/keberhasilan terbesar Anda sejauh ini?**
-
-> **Jawaban:** "Keberhasilan terbesar saya adalah kemampuan saya memanajemen waktu dengan sangat ketat hingga berhasil lulus *Cum Laude* (IPK 3.81), sembari menyelesaikan proyek-proyek *Data Science* yang rumit seperti membangun algoritma *Logistic Regression* dari awal (dari nol) untuk mengatasi batasan memori perangkat. Ini membuktikan kedisiplinan dan daya juang saya."
-
-**9. Bagaimana cara Anda menghadapi saat Anda merasa gagal?**
-
-> **Jawaban:** "Bagi saya, kegagalan adalah kumpulan data (metrik) yang belum dioptimalkan. Saat saya merasa gagal, saya mengambil waktu sejenak untuk menenangkan diri, lalu saya mengevaluasi apa yang salah secara objektif berbasis data. Saya mencari tahu bagian mana yang kurang, meminta masukan dari rekan atau mentor, dan menggunakan wawasan tersebut sebagai pijakan untuk mencoba lagi dengan strategi yang lebih baik. Kegagalan justru menjadi bahan bakar saya untuk terus belajar."
-
-**10. Bagaimana jika Etiqa memutuskan untuk tidak menerima Anda di posisi ini?**
-
-> **Jawaban:** "Tentu saya akan merasa kecewa karena saya sangat menantikan kesempatan belajar dan berkontribusi di sini. Namun, saya akan menghargai keputusan tersebut. Saya akan memohon masukan (*feedback*) dari Bapak/Ibu mengenai area mana yang perlu saya tingkatkan. Setelah itu, saya akan kembali belajar, memperkuat *skill* analitik saya, dan tidak akan ragu untuk mencoba melamar kembali ke Etiqa di masa mendatang saat saya sudah menjadi versi profesional yang lebih baik."
-
----
-
-### BAGIAN 4: SITUASIONAL & DINAMIKA KERJA KERAS (Situational & Work Dynamics)
-
-**11. Bagaimana cara Anda menghadapi tekanan (*under pressure*)?**
-
-> **Jawaban:** "Saya menghadapi tekanan dengan cara memecah masalah besar menjadi tugas-tugas kecil yang terukur (*breakdown*). Misalnya, ketika saya mendapat *email* tes teknis Etiqa dengan tenggat waktu yang sangat singkat (besok siangnya), saya tidak panik. Saya membaginya: 2 jam untuk riset tarif OJK, 3 jam untuk menyusun logika JavaScript, dan 2 jam untuk merapikan desain antarmuka HTML/CSS-nya. Dengan struktur yang jelas, tekanan justru membuat saya lebih fokus."
-
-**12. Bagaimana cara Anda menghadapi perbedaan pendapat dengan rekan tim?**
-
-> **Jawaban:** "Saya akan mengedepankan pendekatan *data-driven*. Saat ada perbedaan pendapat, saya akan mendengarkan sudut pandang rekan saya secara aktif terlebih dahulu. Kemudian, saya akan mengajak tim untuk melihat kembali pada objektivitas data atau metrik bisnis yang kita miliki. Jika data menunjukkan bahwa ide rekan saya lebih efektif, saya akan dengan senang hati mendukungnya, karena pada akhirnya yang terpenting adalah kesuksesan proyek bersama, bukan ego pribadi."
-
----
