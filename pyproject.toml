@@ -1,7 +1,10 @@
 [project]
 name = "maganghub-analysis"
 version = "0.1.0"
-description = "Add your description here"
+description = "Analysis on internship positions of the Maganghub 2026 Batch 1 program"
+authors = [
+  { name = "Yusuf Tejakusumah" },
+]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
