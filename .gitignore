@@ -1,3 +1,10 @@
+# Data
+data/
+
+# Personal Files
+notebooks/1.0-yt-pre-data-mining.ipynb
+personal-documents/
+
 # Python-generated files
 __pycache__/
 *.py[oc]
@@ -8,6 +15,3 @@ wheels/
 
 # Virtual environments
 .venv
-
-# Data
-data/
