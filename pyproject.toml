@@ -1,5 +1,9 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
 [project]
-name = "maganghub-analysis"
+name = "src"
 version = "0.1.0"
 description = "Analysis on internship positions of the Maganghub 2026 Batch 1 program"
 authors = [
@@ -7,13 +11,39 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
 dependencies = [
     "beautifulsoup4>=4.15.0",
+    "connectorx>=0.4.5",
+    "ipykernel>=7.3.0",
+    "loguru>=0.7.3",
     "matplotlib>=3.11.1",
     "numpy>=2.5.1",
     "openpyxl>=3.1.5",
     "pandas>=3.0.3",
+    "psycopg2-binary>=2.9.12",
     "pyarrow>=25.0.0",
+    "python-dotenv>=1.2.3",
     "requests>=2.34.2",
+    "ruff>=0.16.4",
     "seaborn>=0.13.2",
+    "sqlalchemy>=2.0.52",
+    "tqdm>=4.70.0",
+    "typer>=0.27.1",
 ]
+
+
+[tool.ruff]
+line-length = 99
+src = ["src"]
+include = ["pyproject.toml", "src/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+force-sort-within-sections = true
