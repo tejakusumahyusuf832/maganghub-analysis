@@ -1,6 +1,9 @@
 # Data
 data/
 
+# Environment Variables
+.env
+
 # Personal Files
 notebooks/1.0-yt-pre-data-mining.ipynb
 personal-documents/
