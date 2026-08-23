@@ -28,17 +28,6 @@ EXTERNAL_DATA_DIR = DATA_DIR / "external"
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
 
-# =============================================================================
-# LOGGER CONFIGURATION
-# =============================================================================
-# Redirect loguru output through tqdm to prevent progress bar corruption
-try:
-    from tqdm import tqdm
-
-    logger.remove(0)
-    logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
-except ModuleNotFoundError:
-    pass
 
 # =============================================================================
 # INFRASTRUCTURE SETUP
@@ -56,3 +45,16 @@ _project_dirs = [
 # Ensure required directory structure exists on module import
 for d in _project_dirs:
     d.mkdir(parents=True, exist_ok=True)
+
+
+# =============================================================================
+# LOGGER CONFIGURATION
+# =============================================================================
+# Redirect loguru output through tqdm to prevent progress bar corruption
+try:
+    from tqdm import tqdm
+
+    logger.remove(0)
+    logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
+except ModuleNotFoundError:
+    pass
