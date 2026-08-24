@@ -10,7 +10,7 @@ import typer
 app = typer.Typer()
 
 
-def is_connected_to_db(uri_key: str, return_bool: bool = True) -> Any:
+def connect_to_db(uri_key: str, return_bool: bool = True) -> Any:
     """Verify the database connection using a URI stored in environment variables.
 
     Args:
@@ -50,7 +50,7 @@ def main(
     Args:
         uri_key (str): The environment variable key mapped to the target database URI.
     """
-    is_connected_to_db(uri_key, return_bool=False)
+    connect_to_db(uri_key, return_bool=False)
 
 
 if __name__ == "__main__":
