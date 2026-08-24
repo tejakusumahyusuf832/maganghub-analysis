@@ -4,7 +4,41 @@ import json
 import re
 
 from loguru import logger
+import pandas as pd
 import requests
+
+PROV_URL = "https://raw.githubusercontent.com/edwardsamuel/Wilayah-Administratif-Indonesia/master/csv/provinces.csv"
+REG_URL = "https://raw.githubusercontent.com/edwardsamuel/Wilayah-Administratif-Indonesia/master/csv/regencies.csv"
+
+
+def extract_adm_divisions(prov_url: str = PROV_URL, reg_url: str = REG_URL) -> pd.DataFrame:
+    """Extract Indonesian administrative division data from external CSV sources.
+
+    Retrieve province and regency mappings from remote repositories and merge
+    them into a single consolidated dataset.
+
+    Args:
+        prov_url: The URL pointing to the raw provinces CSV file.
+        reg_url: The URL pointing to the raw regencies CSV file.
+
+    Returns:
+        A pandas DataFrame containing merged regency and province records.
+    """
+    logger.info("Extracting administrative divisions data from remote sources.")
+
+    try:
+        provinces = pd.read_csv(prov_url, header=None, names=["province_id", "province"])
+        regencies = pd.read_csv(
+            reg_url, header=None, names=["regency_id", "province_id", "regency"]
+        )
+    except Exception as e:
+        logger.error(f"Failed to fetch administrative divisions data: {e}")
+        raise
+
+    adm_divisions = pd.merge(regencies, provinces, on="province_id", how="left")
+
+    logger.info(f"Successfully extracted {len(adm_divisions)} administrative division records.")
+    return adm_divisions
 
 
 def extract_internship_data(page: int) -> tuple[list[dict], str, dict]:

@@ -8,11 +8,15 @@ from loguru import logger
 import pandas as pd
 import typer
 
-from src.config import INTERIM_DATA_DIR
-from src.etl.extractions import extract_internship_data
-from src.etl.loading.connection import is_connected_to_db
+from src.config import EXTERNAL_DATA_DIR, INTERIM_DATA_DIR, RAW_DATA_DIR
+from src.etl.extractions import extract_adm_divisions, extract_internship_data
+from src.etl.loading.connection import connect_to_db
 from src.etl.loading.storage import append_to_db
-from src.etl.transformations import transform_internship_data
+from src.etl.transformations import (
+    transform_adm_divisions,
+    transform_all_data,
+    transform_internship_data,
+)
 
 app = typer.Typer()
 
@@ -21,10 +25,10 @@ app = typer.Typer()
 def main(
     output_path: Annotated[
         Path, typer.Argument(help="The path where the output Parquet file will be saved.")
-    ] = INTERIM_DATA_DIR / "internship_positions.parquet",
+    ] = INTERIM_DATA_DIR / "internship_postings.parquet",
     to_database: Annotated[
         bool,
-        typer.Option(help="If True, store the data into the database instead of saving the file."),
+        typer.Option(help="If True, store the data into the database as well."),
     ] = False,
     db_uri_key: Annotated[
         str, typer.Option(help="The URI key of the database from the .env file to store the data.")
@@ -32,21 +36,23 @@ def main(
 ) -> None:
     """Execute the main ETL pipeline for internship data orchestration.
 
-    Manage the pagination loop to extract raw data, apply transformations,
-    and route the structured output to either a local Parquet file or a database.
+    Manage the pagination loop to extract raw internship data, retrieve geographic
+    administrative divisions, apply transformations, merge the datasets, and route
+    the final structured output to local Parquet files or a database.
 
     Args:
         output_path: The local filesystem path to save the generated Parquet file.
-        to_database: Flag indicating whether to store results directly in a database.
+        to_database: Flag indicating whether to store results in a database.
         db_uri_key: The environment variable key containing the database connection URI.
     """
     if to_database:
-        status, engine = is_connected_to_db(db_uri_key)
-        if not status:
+        is_connected, engine = connect_to_db(db_uri_key)
+        if not is_connected:
             logger.error("Database connection failed. Aborting pipeline execution.")
             return
 
-    all_results = []
+    # Extract and transform internship position data
+    all_positions = []
     page = 1
 
     logger.info("Initiating extraction pipeline from Maganghub.")
@@ -54,14 +60,14 @@ def main(
     while True:
         logger.info(f"Processing data for page {page}.")
 
-        raw_vacancies, rsc_payload, meta = extract_internship_data(page)
+        raw_positions, rsc_payload, meta = extract_internship_data(page)
 
-        if not raw_vacancies:
+        if not raw_positions:
             logger.info(f"No additional records found on page {page}. Concluding extraction.")
             break
 
-        clean_vacancies = transform_internship_data(raw_vacancies, rsc_payload)
-        all_results.extend(clean_vacancies)
+        clean_positions = transform_internship_data(raw_positions, rsc_payload)
+        all_positions.extend(clean_positions)
 
         last_page = meta.get("lastPage", 1)
         if page >= last_page:
@@ -71,21 +77,42 @@ def main(
         page += 1
         time.sleep(3)
 
-    if not all_results:
+    if not all_positions:
         logger.warning("No data was collected during pipeline execution.")
         return
 
-    total_processed = len(all_results)
-    logger.info(f"Total positions processed: {total_processed}")
+    total_processed = len(all_positions)
+    logger.info(f"Total internship positions extracted: {total_processed}")
+
+    logger.info("Initiating extraction and transformation of administrative divisions.")
+    raw_adm_divisions = extract_adm_divisions()
+    clean_adm_divisions = transform_adm_divisions(raw_adm_divisions)
 
     if to_database:
-        append_to_db(all_results, "internship_positions", engine)
-        logger.info(f"Stored {total_processed} records successfully into the database.")
-    else:
-        df = pd.DataFrame(all_results)
-        df = df.drop_duplicates(subset=["job_id"])
-        df.to_parquet(output_path, index=False)
-        logger.info(f"Saved {len(df)} unique records successfully to {output_path}.")
+        append_to_db(all_positions, "internship_positions", engine)
+        logger.info(f"Stored {total_processed} internship records successfully into the database.")
+
+        append_to_db(
+            clean_adm_divisions.to_dict(orient="records"), "administrative_divisions", engine
+        )
+        logger.info("Stored administrative division records successfully into the database.")
+
+    # Deduplicate before saving base datasets to ensure integrity for downstream analytical queries
+    clean_intern_positions = pd.DataFrame(all_positions).drop_duplicates(subset=["job_id"])
+
+    clean_intern_positions.to_parquet(RAW_DATA_DIR / "internship_positions.parquet", index=False)
+    clean_adm_divisions.to_parquet(
+        EXTERNAL_DATA_DIR / "administrative_divisions.parquet", index=False
+    )
+    logger.info(
+        f"Saved {len(clean_intern_positions)} unique raw internship records and administrative divisions to local storage."
+    )
+
+    logger.info("Executing final data merge and metric calculations.")
+    internship_postings = transform_all_data(clean_intern_positions, clean_adm_divisions)
+
+    internship_postings.to_parquet(output_path, index=False)
+    logger.info(f"Successfully saved the final analytical dataset to {output_path}.")
 
 
 if __name__ == "__main__":
