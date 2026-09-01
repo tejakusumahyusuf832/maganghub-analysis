@@ -94,6 +94,9 @@ def transform_adm_divisions(data: pd.DataFrame) -> pd.DataFrame:
 
     adm_divisions["regency"] = adm_divisions["regency"].str.title().str.strip()
     adm_divisions["province"] = adm_divisions["province"].str.title().str.strip()
+    adm_divisions.loc[adm_divisions.province.str.contains(r"Jakarta|Yogyakarta"), "province"] = (
+        adm_divisions["province"].str.replace({"Dki": "DKI", "Di": "DI"})
+    )
 
     # Align standard prefixes with the Maganghub dataset conventions to improve join rates
     adm_divisions["regency"] = adm_divisions["regency"].str.replace("Kabupaten ", "Kab. ")
@@ -165,7 +168,18 @@ def transform_all_data(
     if unmapped_count > 0:
         logger.warning(f"{unmapped_count} job locations could not be mapped to a province.")
 
-    # Adding 1 to the denominator prevents ZeroDivisionError for positions with 0 applicants
+    # Rename a column
+    internship_positions.rename(columns={"job_location": "regency_city"}, inplace=True)
+
+    # Fix some regency and city names
+    internship_positions["regency_city"] = (
+        internship_positions.regency_city.str.replace(r"^Kab\s", r"Kab. ", regex=True)
+        .str.replace("Pahuwato", "Pohuwato")
+        .str.replace(r"^Kepulauan\s", r"Kab. Kep. ", regex=True)
+        .str.replace(r"\sKepulauan\s", r" Kep. ", regex=True)
+    )
+
+    # Feature Engineering
     logger.info("Calculating derived acceptance metrics.")
     internship_positions["acceptance_percentage"] = round(
         100
@@ -191,9 +205,7 @@ def transform_all_data(
         "acceptance_percentage",
     ]
 
-    internship_postings = internship_positions.rename(columns={"job_location": "regency_city"})[
-        final_cols
-    ]
+    internship_postings = internship_positions[final_cols]
 
     logger.info(f"Final dataset merged and shaped with {len(final_cols)} columns.")
     return internship_postings
