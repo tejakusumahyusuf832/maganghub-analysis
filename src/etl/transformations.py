@@ -3,6 +3,7 @@
 import re
 
 from loguru import logger
+import numpy as np
 import pandas as pd
 
 
@@ -113,7 +114,7 @@ def transform_all_data(
     """Merge internship data with administrative divisions and calculate derived metrics.
 
     Map raw job locations to their corresponding provinces using tiered matching logic,
-    compute acceptance metrics, and structure the final dataset for loading.
+    engineer new features, and structure the final dataset for loading.
 
     Args:
         internship_data: The cleaned DataFrame containing internship vacancy records.
@@ -122,6 +123,9 @@ def transform_all_data(
     Returns:
         A consolidated pandas DataFrame representing the final internship postings table.
     """
+    # ===========================================
+    # Data Integration
+    # ===========================================
     logger.info("Merging internship data with administrative divisions.")
     internship_positions = internship_data.copy()
     adm_divisions = adm_division_data.copy()
@@ -179,7 +183,16 @@ def transform_all_data(
         .str.replace(r"\sKepulauan\s", r" Kep. ", regex=True)
     )
 
+    # ===========================================
+    # Data Conversion
+    # ===========================================
+    # Cast the data type of `weekly_working_day` to string
+    internship_positions = internship_positions.astype({"weekly_working_day": "str"})
+
+    # ===========================================
     # Feature Engineering
+    # ===========================================
+    # 1. Feature Construction
     logger.info("Calculating derived acceptance metrics.")
     internship_positions["acceptance_percentage"] = round(
         100
@@ -188,6 +201,67 @@ def transform_all_data(
         2,
     )
 
+    # 2. Feature Transformation
+    # a. Bin `requested_quota` and `approved_quota`
+    quota_edges = [1, 2, 10, 50, np.inf]
+    quota_labels = ["1 to 2", "3 to 10", "11 to 50", "50+"]
+
+    internship_positions["requested_quota_category"] = pd.cut(
+        internship_positions["requested_quota"],
+        bins=quota_edges,
+        labels=quota_labels,
+        include_lowest=True,
+    )
+    internship_positions["approved_quota_category"] = pd.cut(
+        internship_positions["approved_quota"],
+        bins=quota_edges,
+        labels=quota_labels,
+        include_lowest=True,
+    )
+
+    # b. Bin Column `applicant_count`
+    applicant_edges = [0, 5, 10, 20, 50, np.inf]
+    applicant_labels = ["0 to 5", "6 to 10", "11 to 20", "21 to 50", "50+"]
+
+    internship_positions["applicant_count_category"] = pd.cut(
+        internship_positions["applicant_count"],
+        bins=applicant_edges,
+        labels=applicant_labels,
+        include_lowest=True,
+    )
+
+    # c. Bin Column `acceptance_percentage`
+    acceptance_edges = [0, 10, 25, 50, np.inf]
+    acceptance_labels = ["0 - 10%", "11 - 25%", "26 - 50%", "50%+"]
+
+    internship_positions["acceptance_percentage_category"] = pd.cut(
+        internship_positions["acceptance_percentage"],
+        bins=acceptance_edges,
+        labels=acceptance_labels,
+        include_lowest=True,
+    )
+
+    # 3. Feature Encoding
+    # One hot encode `education_level`
+    ed_level_dummies = (
+        internship_positions["education_level"].str.lower().str.get_dummies(sep=", ")
+    )
+    ed_level_dummies = ed_level_dummies.replace({0: "No", 1: "Yes"}).add_prefix("allows_")
+    ed_level_dummies = ed_level_dummies.add_suffix("_level")
+
+    internship_positions = pd.concat([internship_positions, ed_level_dummies], axis=1)
+
+    # 4. Feature Extraction
+    all_majors_condition = internship_positions.job_description.str.contains(
+        r"semua\sjurusan|jurusan\sapa.*|all\smajors|any\smajor", case=False
+    )
+
+    internship_positions["allows_all_majors"] = np.where(all_majors_condition, "Yes", "No")
+
+    # ===========================================
+    # Schema Finalization
+    # ===========================================
+    # Reorganize the position of the columns
     final_cols = [
         "job_id",
         "published_at",
@@ -195,10 +269,17 @@ def transform_all_data(
         "company",
         "regency_city",
         "province",
-        "education_level",
         "allowed_major",
+        "allows_all_majors",
+        "allows_bachelor_level",
+        "allows_diploma_level",
+        "allows_profession_level",
         "job_description",
         "weekly_working_day",
+        "requested_quota_category",
+        "approved_quota_category",
+        "applicant_count_category",
+        "acceptance_percentage_category",
         "requested_quota",
         "approved_quota",
         "applicant_count",
