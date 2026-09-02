@@ -1,0 +1,44 @@
+{
+  "Healthcare & Medical": [
+    "perawat", "ners", "nurse", "psikiat", "spikiat", "psikat", "pskiat", "psikolog", "piskolog", "pskolog", "medis", "medic", "medik", "gizi", "nutri", "diet", "dokter", "doker", "doktor", "bidan", "apotek", "aptoker", "farmasi", "pharmac", "fisio", "physio", "radio", "sanitari", "sanitasi", "kesehatan", "promkes", "okupasi", "elektromedis", "atem", "terapi", "therap", "klinik", "atlm", "epidemiolog", "anestesi", "anastesi", "rekam medi", "perekam", "mr ", "casemix", "coder", "koder", "cssd", "ipsrs", "audiolog", "orthotic", "mcu", "ranap", "igd", "poliklinik", "vk ", "bersalin", "hemodialisa", "kardiovaskuler", "cardiovascular", "refraksi", "kebidanan", "keperawatan", "patologi", "mikrobiologi", "imunologi", "darah", "ambul", "hospital", "rehabilitasi", "admission"
+  ],
+  "IT & Data": [
+    "komputer", "it ", " it", "programmer", "developer", "software", "data", "sistem", "system", "ui/", "/ux", "network", "cyber", "aplikasi", "application", "backend", "frontend", "website", "web", "informatika", "pusdatin", "jaringan", "ai ", "machine learning", "bda", "digital", "erp", "sap ", "helpdesk", "support it", "noc ", "rpa ", "command center", "dashboard", "cloud", "iot", "analytic"
+  ],
+  "Engineering & Maintenance": [
+    "teknis", "technician", "maintenance", "engineer", "mekanik", "mechanic", "drafter", "drawing", "listrik", "sipil", "civil", "bangunan", "hvac", "otomotif", "mesin", "machine", "welder", "welding", "proyek", "project", "elektro", "electric", "arsitek", "architect", "maint", "equipment", "facility", "sarana", "prasarana", "geologi", "tambang", "mining", "instrument", "surveyor", "craft", "plumbing", "geofisika", "seismik", "geodesi", "geomatika", "toolman", "inspector", "inspektur", "konstruksi", "construction", "pipa", "baja", "otomasi", "automation"
+  ],
+  "Manufacturing, QA & Production": [
+    "produksi", "production", "operator", "qc", "qa", "quality", "pabrik", "manufacturing", "assembly", "packaging", "mutu", "plant", "molding", "mould", "mold", "pattern maker", "slitting", "blown film", "sewing", "garment", "textile", "printing", "finishing", "curing", "mixing", "extruder", "ppic", "rnd", "r&d", "research", "reserch", "set up", "cleanning", "rewinding", "laminasi", "improvement", "pdca", "koe ", "lean", "mill", "helper", "pe ", "ie "
+  ],
+  "Finance & Banking": [
+    "keuangan", "akuntansi", "accounting", "akuntan", "pajak", "tax", "auditor", "audit", "bendahara", "anggaran", "finance", "treasury", "billing", "kasir", "cashier", "credit", "kredit", "loan", "pembiayaan", "funding", "transaction", "collection", "receivable", "payable", "wealth", "insurance", "asuransi", "actuary", "aktuaria", "bank", "bni", "teller", "pawning", "micro", "invest", "budget", "cost "
+  ],
+  "Sales, Marketing & Hospitality": [
+    "barista", "cook", "koki", "pastry", "bakery", "culinary", "chef", "layanan", "frontliner", "frontlner", "sales", "marketing", "f&b", "fb ", "store", "customer", "receptionist", "pemasaran", "pramusaji", "hotel", "event", "reservation", "guest", "hospitality", "dancer", "entertainment", "commercial", "merchandis", "retail", "promot", "promosi", "brand", "business development", "bd ", "partnership", "account executive", "masak", "food", "beverage", "catering", "kitchen", "tour ", "travel", "room", "bro", "activation"
+  ],
+  "Media, PR & Creative": [
+    "humas", "kehumasan", "design", "desain", "kreatif", "creative", "video", "animator", "animation", "content", "konten", "sosial media", "social media", "sosmed", "kol ", "publisitas", "jurnalis", "journalist", "wartawan", "editor", "multimedia", "reporter", "fotografer", "photographer", "broadcasting", "komunikasi", "communication", "visual", "vm artist", "motion", "copywriter", "writer", "art ", "talent", "audio", "camera", "campaign", "publikasi", "publik", "illustrator", "media", "broadcast", "creator"
+  ],
+  "Legal, Risk & Compliance": [
+    "hukum", "legal", "law", "compliance", "kepatuhan", "risk", "risiko", "hse", "hsse", "qhse", "she", "ehs", "safety", "k3", "security", "keamanan", "fraud", "investigasi", "pengaduan", "maladministrasi", "litigasi", "regulas", "regulatory", "sertifikasi", "perizinan", "izin", "kekayaan intelektual"
+  ],
+  "Logistics & Supply Chain": [
+    "gudang", "warehouse", "logistik", "logistic", "exim", "supply chain", "scm", "inventory", "pengadaan", "purchasing", "procurement", "buyer", "ekspor", "impor", "export", "import", "cargo", "shipping", "freight", "delivery", "transport", "fleet", "ekspeditor", "harbour", "port ", "bandara", "airport", "pelabuhan", "aviation", "aero", "aircraft", "checker", "terminal"
+  ],
+  "Education, Training & Government": [
+    "kebijakan", "pemerintahan", "penelaah", "pengawas", "asn", "biro", "kementerian", "pemda", "pns", "diplomat", "instruktur", "pelatihan", "pembelajaran", "tentor", "pengajar", "edukator", "diklat", "akademik", "guru", "dosen", "widyaiswara", "pusat", "badan", "tutor", "statistik", "statistisi", "peneliti", "pustaka", "kearsipan", "arsip", "kurator", "laporan", "pelaporan", "penyusun", "evaluasi", "pengolah", "dokumen", "evaluator", "pemeriksaan"
+  ],
+  "Agriculture & Environment": [
+    "pertanian", "perikanan", "peternakan", "perkebunan", "agribisnis", "kehutanan", "lingkungan", "agronomi", "pangan", "tambak", "tanaman", "kebun", "hewan", "hutan", "forestry", "environment", "sustainability", "esg", "limbah", "waste", "marine", "hydro", "iklim", "climate", "budidaya", "ternak", "nelayan", "satwa", "flora", "fauna", "ekologi", "air "
+  ],
+  "Language & Translation": [
+    "isyarat", "penerjemah", "translator", "interpreter", "language", "mandarin", "japanese", "english", "bahasa"
+  ],
+  "Correctional & Social Services": [
+    "pembinaan", "kepribadian", "pembimbing kemasyarakatan", "warga binaan", "kegiatan kerja", "rohani", "sosial", "pemasyarakatan", "community", "csr", "tjsl", "bina", "klien", "konselor"
+  ],
+  "HR, Admin & Management": [
+    "sdm", "human resource", "hr", "ga", "general affair", "administrasi", "admin", "bmn", "sekretaris", "secretary", "tata usaha", "tu ", "personil", "personalia", "rekrutmen", "recruitment", "talent acquisition", "od ", "organization development", "umum", "fasilitas", "manajemen", "management", "manager", "pmo", "strategi", "koordinator", "coordinator", "supervisor", "spv", "director", "operasional", "operation", "asset", "aset", "clerical", "sarana", "pejabat", "pengelola", "asisten", "officer", "staff", "staf", "pelaksana", "magang", "intern", "consultant", "konsultan", "planner"
+  ]
+}

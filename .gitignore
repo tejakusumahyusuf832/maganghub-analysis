@@ -1,5 +1,6 @@
 # Data
-data/
+data/**/*.parquet
+data/**/*.xlsx
 
 # Environment Variables
 .env

@@ -8,13 +8,12 @@ from loguru import logger
 import pandas as pd
 import typer
 
-from src.config import EXTERNAL_DATA_DIR, INTERIM_DATA_DIR, RAW_DATA_DIR
+from src.config import EXTERNAL_DATA_DIR, RAW_DATA_DIR
 from src.etl.extractions import extract_adm_divisions, extract_internship_data
 from src.etl.loading.connection import connect_to_db
 from src.etl.loading.storage import append_to_db
 from src.etl.transformations import (
     transform_adm_divisions,
-    transform_all_data,
     transform_internship_data,
 )
 
@@ -23,9 +22,16 @@ app = typer.Typer()
 
 @app.command()
 def main(
-    output_path: Annotated[
-        Path, typer.Argument(help="The path where the output Parquet file will be saved.")
-    ] = INTERIM_DATA_DIR / "internship_postings.parquet",
+    internship_output_path: Annotated[
+        Path,
+        typer.Argument(help="The path where the output internship Parquet file will be saved."),
+    ] = RAW_DATA_DIR / "internship_positions.parquet",
+    adm_division_output_path: Annotated[
+        Path,
+        typer.Argument(
+            help="The path where the output adiministrative divisions Parquet file will be saved."
+        ),
+    ] = EXTERNAL_DATA_DIR / "administrative_divisions.parquet",
     to_database: Annotated[
         bool,
         typer.Option(help="If True, store the data into the database as well."),
@@ -37,11 +43,12 @@ def main(
     """Execute the main ETL pipeline for internship data orchestration.
 
     Manage the pagination loop to extract raw internship data, retrieve geographic
-    administrative divisions, apply transformations, merge the datasets, and route
-    the final structured output to local Parquet files or a database.
+    administrative divisions, apply base transformations, and route the raw datasets
+    to local Parquet files or a target database.
 
     Args:
-        output_path: The local filesystem path to save the generated Parquet file.
+        internship_output_path: The local filesystem path to save the raw internship Parquet file.
+        adm_division_output_path: The local filesystem path to save the administrative divisions Parquet file.
         to_database: Flag indicating whether to store results in a database.
         db_uri_key: The environment variable key containing the database connection URI.
     """
@@ -100,19 +107,11 @@ def main(
     # Deduplicate before saving base datasets to ensure integrity for downstream analytical queries
     clean_intern_positions = pd.DataFrame(all_positions).drop_duplicates(subset=["job_id"])
 
-    clean_intern_positions.to_parquet(RAW_DATA_DIR / "internship_positions.parquet", index=False)
-    clean_adm_divisions.to_parquet(
-        EXTERNAL_DATA_DIR / "administrative_divisions.parquet", index=False
-    )
+    clean_intern_positions.to_parquet(internship_output_path, index=False)
+    clean_adm_divisions.to_parquet(adm_division_output_path, index=False)
     logger.info(
         f"Saved {len(clean_intern_positions)} unique raw internship records and administrative divisions to local storage."
     )
-
-    logger.info("Executing final data merge and metric calculations.")
-    internship_postings = transform_all_data(clean_intern_positions, clean_adm_divisions)
-
-    internship_postings.to_parquet(output_path, index=False)
-    logger.info(f"Successfully saved the final analytical dataset to {output_path}.")
 
 
 if __name__ == "__main__":
