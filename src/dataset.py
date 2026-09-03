@@ -14,6 +14,19 @@ from src.config import EXTERNAL_DATA_DIR, INTERIM_DATA_DIR, RAW_DATA_DIR
 app = typer.Typer()
 
 
+maj_categories = {
+    "it_and_computer": r"informatika|komputer|sistem informasi|perangkat lunak|multimedia|jaringan|siber|data|teknologi informasi|piranti lunak|website",
+    "engineering": r"teknik(?!\s*(?:informatika|komputer|multimedia))|rekayasa(?!\s*(?:perangkat lunak|internet|komputer))|arsitektur|mesin|elektro|sipil|industri|mekatronika|otomotif|manufaktur|konstruksi|geodesi|geologi|tambang|perkapalan|dirgantara|nautika|listrik|kelistrikan|logam|tekstil|metrologi|instrumentasi|perencanaan|planologi|tata ruang",
+    "business": r"manajemen|akuntansi|bisnis|ekonomi|keuangan|administrasi|adminsitrasi|logistik|pemasaran|marketing|pajak|perbankan|retail|niaga|aktiva|kewirausahaan|asuransi",
+    "health": r"kedokteran|keperawatan|kebidanan|farmasi|kesehatan|gizi|medik|medis|terapi|radiologi|klinik|apoteker|sanitasi|higiene|hiperkes|optisi|optometri|ortotik|prostetik|darah|audiologi|akupunktur|herbal|rumah sakit|nutrisi",
+    "science_and_agri": r"matematika|statistik|statistika|biologi|kimia|fisika|sains|agribisnis|agribinis|pertanian|peternakan|perikanan|kehutanan|agroteknologi|agroekoteknologi|agro|perkebunan|agronomi|hortikultura|hewan|laut|oseanografi|aktuaria|geografi|astronomi|lingkungan|budidaya|tanaman|bumi|pangan|pertanahan|kartografi|penginderaan",
+    "arts_and_media": r"desain|seni|komunikasi|film|televisi|jurnalistik|penyiaran|broadcasting|hubungan masyarakat|humas|fotografi|kriya|tari|musik|karawitan|animasi|media|audio|video|penerbitan",
+    "social_and_law": r"hukum|sosiologi|psikologi|sastra|bahasa|kriminologi|kesejahteraan|pemerintahan|politik|hubungan internasional|sejarah|filsafat|antropologi|perpustakaan|kearsipan|arsip|agama|teologi|syariah|islam|kristen|buddha|hindu",
+    "education": r"pendidikan|pgsd|pgpaud|tadris|bimbingan|konseling|tarbiyah|guru|kependidikan|penyuluhan",
+    "tourism_and_hospitality": r"pariwisata|perhotelan|tata boga|tata rias|tata busana|fashion|kuliner|wisata|mice|travel|hospitaliti|hidang|patiseri",
+}
+
+
 def categorize_job(title: str | None, mapping: dict) -> str:
     """Categorize a job title based on a predefined keyword mapping.
 
@@ -184,7 +197,17 @@ def make_data(
     internship_positions["job_category"] = internship_positions.job_title.apply(
         lambda title: categorize_job(title, category_mapping)
     )
-    # b. Bin `requested_quota` and `approved_quota`
+
+    # b. Create new Boolean columns
+    # Iterate through the `maj_categories` dictionary
+    for cat, pattern in maj_categories.items():
+        col_name = f"allows_{cat}_majors"
+
+        # Check if any keyword in the pattern exists in the "allowed_major" string
+        mask = internship_positions["allowed_major"].str.contains(pattern, case=False, regex=True)
+        internship_positions[col_name] = np.where(mask, "Yes", "No")
+
+    # c. Bin `requested_quota` and `approved_quota`
     quota_edges = [1, 2, 10, 50, np.inf]
     quota_labels = ["1 to 2", "3 to 10", "11 to 50", "50+"]
 
@@ -201,7 +224,7 @@ def make_data(
         include_lowest=True,
     )
 
-    # c. Bin Column `applicant_count`
+    # d. Bin Column `applicant_count`
     applicant_edges = [0, 5, 10, 20, 50, np.inf]
     applicant_labels = ["0 to 5", "6 to 10", "11 to 20", "21 to 50", "50+"]
 
@@ -212,7 +235,7 @@ def make_data(
         include_lowest=True,
     )
 
-    # d. Bin Column `acceptance_percentage`
+    # e. Bin Column `acceptance_percentage`
     acceptance_edges = [0, 10, 25, 50, np.inf]
     acceptance_labels = ["0 - 10%", "11 - 25%", "26 - 50%", "50%+"]
 
