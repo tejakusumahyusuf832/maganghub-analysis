@@ -57,12 +57,15 @@ def transform_internship_data(raw_vacancies: list[dict], rsc_payload: str) -> li
         city = job.get("city") or {}
         education = job.get("educationLevels") or []
         study_programs = job.get("studyPrograms") or []
+        interview_methods = job.get("interviewTypes") or []
 
         extracted = {
             "job_id": job.get("id"),
             "published_at": job.get("publishedAt"),
             "job_title": job.get("positionName"),
             "company": organizer.get("name", "Unknown Company"),
+            "organizer_type": organizer.get("organizableType", "Unknown"),
+            "interview_type": ", ".join(interview_methods).title(),
             "job_location": city.get("name", "Unknown Location"),
             "education_level": ", ".join(education).title(),
             "allowed_major": ", ".join(
