@@ -62,6 +62,11 @@ def main(
     all_positions = []
     page = 1
 
+    # --- NEW: Track consecutive failures ---
+    consecutive_failures = 0
+    max_failures = 5
+    # ---------------------------------------
+
     logger.info("Initiating extraction pipeline from Maganghub.")
 
     while True:
@@ -70,11 +75,28 @@ def main(
         raw_positions, rsc_payload, meta = extract_internship_data(page)
 
         if not raw_positions:
-            logger.info(f"No additional records found on page {page}. Concluding extraction.")
-            break
+            # --- UPDATED: Skip the page instead of breaking ---
+            logger.warning(f"No records found on page {page}. Skipping to next page.")
+            consecutive_failures += 1
+
+            if consecutive_failures >= max_failures:
+                logger.error(f"Hit {max_failures} consecutive broken pages. Halting extraction.")
+                break
+
+            page += 1
+            time.sleep(3)
+            continue
+            # --------------------------------------------------
+
+        # Reset the failure counter upon a successful extraction
+        consecutive_failures = 0
 
         clean_positions = transform_internship_data(raw_positions, rsc_payload)
         all_positions.extend(clean_positions)
+
+        # --- NEW: Log the number of positions successfully fetched ---
+        logger.info(f"Successfully extracted {len(clean_positions)} positions from page {page}.")
+        # -------------------------------------------------------------
 
         last_page = meta.get("lastPage", 1)
         if page >= last_page:
