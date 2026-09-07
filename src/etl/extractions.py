@@ -2,6 +2,7 @@
 
 import json
 import re
+import time
 
 from loguru import logger
 import pandas as pd
@@ -54,17 +55,32 @@ def extract_internship_data(page: int) -> tuple[list[dict], str, dict]:
     url = f"https://maganghub.kemnaker.go.id/national-batch/vacancy?page={page}"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
-    try:
-        response = requests.get(url, headers=headers, timeout=15)
-        response.raise_for_status()
-    except requests.RequestException as e:
-        logger.error(f"Network error encountered on page {page}: {e}")
-        return [], "", {}
+    # --- UPDATED: Robust Retry Mechanism ---
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            # Increased timeout from 15 to 30 seconds
+            response = requests.get(url, headers=headers, timeout=30)
+            response.raise_for_status()
+            break  # Success! Break out of the retry loop.
+
+        except requests.RequestException as e:
+            logger.warning(
+                f"Network error on page {page} (Attempt {attempt + 1}/{max_retries}): {e}"
+            )
+            if attempt == max_retries - 1:
+                logger.error(
+                    f"Failed to fetch page {page} after {max_retries} attempts. Giving up."
+                )
+                return [], "", {}
+            time.sleep(5)  # Wait 5 seconds before trying again
+    # --------------------------------------
 
     # Force UTF-8 encoding to prevent rendering issues with special characters (e.g., bullet points).
     response.encoding = "utf-8"
 
-    scripts = re.findall(r'__next_f\.push\(\[\d+,\s*(".*?")\]\)', response.text)
+    # UPDATED: Added re.DOTALL to span across multiline HTML chunks
+    scripts = re.findall(r'__next_f\.push\(\[\d+,\s*(".*?")\]\)', response.text, re.DOTALL)
     rsc_payload = ""
     for script in scripts:
         try:
@@ -76,14 +92,17 @@ def extract_internship_data(page: int) -> tuple[list[dict], str, dict]:
         logger.warning(f"Failed to load RSC payload on page {page}.")
         return [], "", {}
 
+    # UPDATED: Added re.DOTALL so the wildcard safely ignores newlines inside job descriptions
     match = re.search(
         r'"initialVacancies":(\{"data":\[.*?\],"links":\{.*?\},"meta":\{.*?\}\})',
         rsc_payload,
+        re.DOTALL,
     )
 
     if not match:
         logger.warning(f"No job list structure found on page {page}.")
         return [], rsc_payload, {}
+    # ... [Rest of the function continues as normal] ...
 
     try:
         data = json.loads(match.group(1))
