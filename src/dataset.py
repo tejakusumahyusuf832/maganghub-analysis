@@ -69,7 +69,7 @@ def make_data(
     ] = EXTERNAL_DATA_DIR / "job_categories.json",
     output_path: Annotated[
         Path, typer.Argument(help="The path where the output Parquet file will be saved.")
-    ] = INTERIM_DATA_DIR / "internship_postings.parquet",
+    ] = INTERIM_DATA_DIR / "internship_postings_2.parquet",
     returns_df: bool = False,
 ) -> pd.DataFrame | None:
     """Integrate and engineer features for the final analytical internship dataset.
